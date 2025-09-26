@@ -8,7 +8,7 @@
     define('DB_HOST', $config['db']['host']);
     define('DB_NAME', $config['db']['dbname']);
     define('DB_USER', $config['db']['username']);
-    defire('DB_PASS', $config['db']['password']);
+    define('DB_PASS', $config['db']['password']);
     define('DB_CHAR', 'utf8');
 
     class DB
@@ -23,9 +23,9 @@
             if (self::$instance === null)
             {
                 $opt = array(
-                    PDO::ATTR_ERRMODE =>            PDO::ERRMORE_EXCEPTION,
+                    PDO::ATTR_ERRMODE =>            PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES =>   TRUE,
+                    PDO::ATTR_EMULATE_PREPARES =>   true,
                 );
                 $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset='.DB_CHAR;
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $opt);
