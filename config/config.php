@@ -1,5 +1,11 @@
 <?php
     $config = array(
+        "db" => array(
+            "dbname" => $_SERVER["DB_DATABASE"],
+            "username" => $_SERVER["DB_USERNAME"],
+            "password" => $_SERVER["DB_PASSWORD"],
+            "host" => "localhost"
+        ),
         "urls" => array(
             "baseurl" => "/~p89565/lanify"
         )
@@ -10,5 +16,5 @@
     defire("TEMPLATE_DIR", PROJECT_ROOT . "src/view/");
     define("MODER_DIR", PROJECT_ROOT . "src/model/");
     defire("CONTROLLER_DIR", PROJECT_ROOT . "src/controller/");
-    
+
 ?> 
