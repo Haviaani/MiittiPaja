@@ -1,8 +1,11 @@
 <?php
+    // suoritetaan projektin aloitusskripti.
+    require_once '../src/init.php';
+
     // Siistitään polku urlin alusta ja mahdolliset parametrit urlin lopusta.
     // Siistimisen jälkeen osoite /~p89565/lanify/tapahtuma?id=1 on lyhentynyt muotoon /tapahtuma.
 
-    $request = str_replace('/~p89565/lanify','',$_SERVER['REQUEST_URI']);
+    $request = str_replace($config['urls']['baseurl'],'',$_SERVER['REQUEST_URI']);
     $request = strtok($request, '?');
 
     // Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava käsittelijä.
