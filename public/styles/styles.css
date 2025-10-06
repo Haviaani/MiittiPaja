@@ -23,6 +23,11 @@ body {
 header {
     background-color: #b8bac8;
     padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
 }
 
 header h1 {
@@ -102,6 +107,6 @@ input[type=submit] {
     text-align: center;
 }
 
-.infoa {
+.info a {
     color: #975579;
 }
