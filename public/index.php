@@ -1,11 +1,14 @@
 <?php
+    // Aloitetaan istunnot.
+    session_start();
+
     // suoritetaan projektin aloitusskripti.
     require_once '../src/init.php';
 
     // Siistitään polku urlin alusta ja mahdolliset parametrit urlin lopusta.
     // Siistimisen jälkeen osoite /~p89565/lanify/tapahtuma?id=1 on lyhentynyt muotoon /tapahtuma.
 
-    $request = str_replace($config['urls']['baseurl'],'',$_SERVER['REQUEST_URI']);
+    $request = str_replace($config['urls']['baseUrl'],'',$_SERVER['REQUEST_URI']);
     $request = strtok($request, '?');
 
     // Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
@@ -49,7 +52,8 @@
             if (isset($_POST['laheta'])) {
                 require_once CONTROLLER_DIR . 'kirjaudu.php';
                 if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
-                    echo "Kirjautuminen ok!";
+                    $_SESSION['user'] = $_POST['email'];
+                    header("Location: " . $config['urls']['baseUrl']);
                 } else {
                     echo $templates->render('kirjaudu', ['error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
                 }      

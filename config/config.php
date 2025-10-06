@@ -7,7 +7,7 @@
             "host" => "localhost"
         ),
         "urls" => array(
-            "baseurl" => "/~p89565/lanify"
+            "baseUrl" => "/~p89565/lanify"
         )
     );
 
