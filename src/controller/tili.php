@@ -129,12 +129,52 @@
                    "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
                    "ja pääset käyttämään Lanify-palvelua.\n\n" . 
                    "$url\n\n" .
-                   "Jos et ole rekisteröitynyt Lanify palveluun, niin\n" . 
-                   "silloin tämä sähköposti on tullut sinulle\n" .
+                   "Jos et ole rekisteröitynyt Lanify palveluun,\n" . 
+                   "niin silloin tämä sähköposti on tullut sinulle\n" .
                    "vahingossa. Siinä tapauksessa ole hyvä ja\n" .
-                   "poista tämä viesti.\n\n".
+                   "poista tämä viesti.\n\n" .
                    "Terveisin, Lanify-palvelu";
         return mail($email,'Lanify-tilin aktivoimislinkki',$message);
+    }
+
+    function lahetaVaihtoavain($email,$url) {
+        $message = "Hei!\n\n" .
+                   "Olet pyytänyt tilisi salasanan vaihtoa, klikkaamalla\n" . 
+                   "alla olevaa linkkiä pääset vaihtamaan salasanasi.\n" . 
+                   "Linkki on voimassa 30 minuuttia.\n\n" . 
+                   "$url\n\n" . 
+                   "Jos et ole pyytänyt tilisi salasanan vaihtoa,\n" . 
+                   "niin voit poistaa tämän viestin turvallisesti.\n\n" . 
+                   "Terveisin, Lanify-palvelu";
+        return mail($email,'Lanify-tilin salasanan vaihtaminen',$message);
+    }
+
+    function luoVaihtoavain($email, $baseurl='') {
+        // Luodaan käyttäjälle vaihtoavain ja muodostetaan vaihtolinkki.
+        require_once(HELPERS_DIR . "secret.php");
+        $avain = generateResetCode($email);
+        $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/reset?key=$avain";
+
+        // Tuodaan henkilo-mallin funtiot, joilla voidaan lisätä
+        // vaihtoavaimen tiedot kantaan.
+        require_once(MODEL_DIR . 'henkilo.php');
+
+        // Lisätään vaihtoavain tietokantaan ja lähetetään käyttäjälle
+        // sähköpostia. Jos tämä onnistu, niin palautetaan palautusarvona
+        // vaihtoavain ja sähköpostiosoite. Muuten palautetaan virhekoodi,
+        // joka ilmoittaa, että jokin lisäyksessä epäonnistui.
+        if (asetaVaihtoavain($email,$avain) && lahetaVaihtoavain($email,$url)) {
+            return [
+                "status"    => 200,
+                "email"     => $email,
+                "resetkey"  => $avain
+            ];
+        } else {
+            return [
+                "status"    => 500,
+                "email"     => $email
+            ];
+        }
     }
 
 ?>
