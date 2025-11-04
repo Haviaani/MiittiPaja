@@ -125,7 +125,19 @@
             require_once CONTROLLER_DIR . 'kirjaudu.php';
             logout();
             header("Location: " . $config['urls']['baseUrl']);
-            break;    
+            break;  
+        case '/tilaa_vaihtoavain':
+            $formdata = cleanArrayData($_POST);
+            // Tarkistetaan, onko lomakkeelta lähetetty tietoa.
+            if (isset($formdata['laheta'])) {
+
+                // TODO
+
+            } else {
+                // Lomakkeelta ei ole lähetetty tietoa, tulostetaan lomake.
+                echo $templates->render('tilaa_vaihtoavain_lomake');
+            }
+            break;
         default:
             echo $templates->render('notfound');
     }
