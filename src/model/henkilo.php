@@ -19,6 +19,6 @@
     }
 
     function vahvistaTili($avain) {
-        return DB::run('UPDATE henkilo SET vahvistettu = TRUE WHERE vahvavain = ?')->rowCount();
+        return DB::run('UPDATE henkilo SET vahvistettu = TRUE WHERE vahvavain = ?', [$avain])->rowCount();
     }
 ?>
