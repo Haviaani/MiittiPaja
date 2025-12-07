@@ -12,23 +12,33 @@
         // Jos kentän arvo ei täytä tarkistuksen ehtoja, niin error-taulukkoon lisätään virhekuvaus.
         // Lopussa error-taulukko on tyhjä, jos kaikki kentät menevät tarkistuksesta lävitse.
 
-        // Tarkistetaan onko nimi määritelty ja se täyttää mallin.
+        // Tarkistetaan onko etunimi määritelty ja se täyttää mallin.
 
-        if (!isset($formdata['nimi']) || !$formdata['nimi']) {
-            $error['nimi'] = "Anna nimesi.";
+        if (!isset($formdata['etunimi']) || !$formdata['etunimi']) {
+            $error['etunimi'] = "Anna etunimesi.";
         } else {
-            if (!preg_match("/^[- '\p{L}]+$/u", $formdata["nimi"])) {
-                $error['nimi'] = "Syötä nimesi ilman erikoismerkkejä.";
+            if (!preg_match("/^[- '\p{L}]+$/u", $formdata["etunimi"])) {
+                $error['etunimi'] = "Syötä etunimesi ilman erikoismerkkejä.";
             }
         }
 
-        // Tarkistetaan, että discord-tunnus on määritelty ja se on muodossa tunnus#0000.
+        // Tarkistetaan onko sukunimi määritelty ja se täyttää mallin.
 
-        if (!isset($formdata['discord']) || !$formdata['discord']) {
-            $error['discord'] = "Anna discord-tunnuksesi muodossa tunnus#0000.";
+        if (!isset($formdata['sukunimi']) || !$formdata['sukunimi']) {
+            $error['sukunimi'] = "Anna sukunimesi.";
         } else {
-            if (!preg_match("/^.+#\d{4}$/", $formdata['discord'])) {
-                $error['discord'] = "Discord-tunnuksesi muoto on virheellinen.";
+            if (!preg_match("/^[- '\p{L}]+$/u", $formdata["sukunimi"])) {
+                $error['sukunimi'] = "Syötä sukunimesi ilman erikoismerkkejä.";
+            }
+        }
+
+        // Tarkistetaan onko nimimerkki määritelty.
+
+        if (!isset($formdata['nimimerkki']) || !$formdata['nimimerkki']) {
+            $error['nimimerkki'] = "Anna nimimerkkisi.";
+        } else {
+            if (haeHenkiloNimimerkilla($formdata['nimimerkki'])) {
+                $error['nimimerkki'] = "Nimimerkki on jo käytössä.";
             }
         }
 
@@ -63,14 +73,15 @@
 
             // Haetaan lomakkeen tiedot omiin muuttujiinsa.
             // Salataan salasana myös samalla.
-            $nimi = $formdata['nimi'];
+            $etunimi = $formdata['etunimi'];
+            $sukunimi = $formdata['sukunimi'];
+            $nimimerkki = $formdata['nimimerkki'];
             $email = $formdata['email'];
-            $discord = $formdata['discord'];
             $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);
 
             // Lisätään henkilö tietokantaan. Jos lisäys onnistui, tulee palautusarvona lisätyn henkilön id-tunniste.
 
-            $idhenkilo = lisaaHenkilo($nimi,$email,$discord,$salasana);
+            $idhenkilo = lisaaHenkilo($etunimi,$sukunimi,$nimimerkki,$email,$salasana);
 
             // Palautetaan JSON-tyyppinen taulukko, jossa:
             // status   = Koodi, joka kertoo lisäyksen onnistumisen.
@@ -124,17 +135,17 @@
 
     function lahetaVahvavain($email,$url) {
         $message = "Hei!\n\n" . 
-                   "Olet rekisteröitynyt Lanify-palveluun tällä\n" . 
+                   "Olet rekisteröitynyt MiittiPaja-palveluun tällä\n" . 
                    "sähköpostiosoitteella. Klikkaamalla alla olevaa\n" . 
                    "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
-                   "ja pääset käyttämään Lanify-palvelua.\n\n" . 
+                   "ja pääset käyttämään MiittiPaja-palvelua.\n\n" . 
                    "$url\n\n" .
-                   "Jos et ole rekisteröitynyt Lanify palveluun,\n" . 
+                   "Jos et ole rekisteröitynyt MiittiPaja-palveluun,\n" . 
                    "niin silloin tämä sähköposti on tullut sinulle\n" .
                    "vahingossa. Siinä tapauksessa ole hyvä ja\n" .
                    "poista tämä viesti.\n\n" .
-                   "Terveisin, Lanify-palvelu";
-        return mail($email,'Lanify-tilin aktivoimislinkki',$message);
+                   "Terveisin, MiittiPaja";
+        return mail($email,'MiittiPaja-tilin aktivoimislinkki',$message);
     }
 
     function lahetaVaihtoavain($email,$url) {
@@ -145,8 +156,8 @@
                    "$url\n\n" . 
                    "Jos et ole pyytänyt tilisi salasanan vaihtoa,\n" . 
                    "niin voit poistaa tämän viestin turvallisesti.\n\n" . 
-                   "Terveisin, Lanify-palvelu";
-        return mail($email,'Lanify-tilin salasanan vaihtaminen',$message);
+                   "Terveisin, MiittiPaja";
+        return mail($email,'MiittiPaja-tilin salasanan vaihtaminen',$message);
     }
 
     function luoVaihtoavain($email, $baseurl='') {

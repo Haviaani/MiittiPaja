@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree&family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
 * {
     padding: 0;
@@ -8,32 +10,35 @@
 
 html {
     font-family: 'Rubik', sans-serif;
-    background: rgb(0,34,0);
-    background: linear-gradient(120deg, rgba(0,34,0,1) 0%, rgba(9,136,144,1) 36%, rgba(151,85,121,1) 100%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgb(0, 0, 0) 10%, rgb(255, 0, 0) 50%, rgb(0, 0, 0) 90%);
+}
+
+html, body {
+    height: 100dvh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
+    font-size: 16px;
     background-color: #fff;
-    min-height: 100vh;
-    max-width: 40rem;
+    min-width: 60rem;
+    max-width: 60rem;
     margin: 0 auto;
     box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
 }
 
 header {
-    background-color: #b8bac8;
-    padding: 1rem 1.5rem;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgb(0, 0, 0) 0%, rgb(255, 255, 255) 10%, rgb(255, 255, 255) 90%, rgb(0, 0, 0) 100%);
+    padding: 1rem 1.5rem 1rem 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     font-size: 0.8rem;
-}
-
-header h1 {
-    font-size: 3rem;
-    font-weight: normal;
-    margin-left: 0.5rem;
 }
 
 header a {
@@ -42,11 +47,57 @@ header a {
 }
 
 section {
-    padding: 1.5rem 1rem 1rem 1rem;
+    background: rgb(255, 255, 255);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 section h1 {
-    margin-bottom: 1rem;
+    margin: 1rem 0rem;
+}
+
+footer {
+    font-size: 0.8rem;
+    text-align: center;
+    color: #000000;
+    padding-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.etusivu_ruutu {
+    margin: 3rem auto;
+    max-width: 70%;
+    border-radius: 0.4rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+    overflow-y: auto;
+}
+
+.etusivu_info
+
+.tyhja {
+    flex: 0.15;
+}
+
+.profile {
+    flex: 0.30;
+    margin-right: 0.4rem;
+}
+
+.page {
+    padding: 1rem 2rem;
 }
 
 hr {
@@ -55,47 +106,16 @@ hr {
     margin: 1rem;
 }
 
-footer {
-    font-size: 0.8rem;
-    text-align: center;
-    color: #1b1b3a;
-}
-
-.tapahtumat > div {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
-.tapahtumat > div > div:nth-child(3) {
-    text-align: right;
-}
-
 form > div {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
 }
 
-input {
-    border: 1px solid #999;
-    border-radius: 0.3rem;
-    padding: 0.45rem;
-    font-size: 1rem;
-}
-
-input[type=submit], .button {
-    padding: 0.5rem 3rem;
-    border-radius: 0.3rem;
-    background-color: #975579;
-    color: #fff;
-    font-weight: bold;
-    min-width: 12rem;
-    margin: 1rem auto;
-}
-
 .error {
-    color: red;
+    color: #800000;
     font-size: 0.8rem;
+    text-align: left;
 }
 
 .info {
@@ -108,16 +128,470 @@ input[type=submit], .button {
 }
 
 .info a {
-    color: #975579;
+    color: #800000;
 }
 
 .flexarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1rem;
 }
+
+menu h1 {
+    margin-bottom: 0.2rem;
+}
+
+menu {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 85%, rgb(255, 255, 255) 100%);
+    padding: 1rem 0rem 1.8rem 0rem;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}  
 
 .button {
     text-decoration: none;
+}
+
+.button_menu {
+    padding: 0.5rem 2rem;
+    border-radius: 0.3rem;
+    background-color: #ff0000;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    min-width: 10rem;
+    font-size: 1.1rem;
+    margin: 0rem 0.5rem;
+    text-decoration: none;
+}
+
+.button_menu.active {
+    background-color: #470000;
+    color: black;
+}
+
+.button_ala {
+    text-decoration: none;
+    padding: 0.5rem 3rem;
+    border-radius: 0.3rem;
+    background-color: #800000;
+    color: #fff;
+    font-weight: bold;
+    min-width: 12rem;
+    font-size: 1.2rem;
+    margin: 0.8rem 1rem -0.2rem 1rem;
+}
+
+input[type=text], input[type=datetime-local], input[type=password], input[type=email], textarea, label {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input {
+    border: 1px solid #999;
+    border-radius: 0.3rem;
+    padding: 0.45rem;
+    font-size: 1.2rem;
+}
+
+select {
+    border: 1px solid #999;
+    border-radius: 0.3rem;
+    padding: 0.45rem 2rem;
+    font-size: 1.2rem;  
+}
+
+label {
+    text-align: left;
+}
+
+input[type=submit], .button {
+    padding: 0.5rem 3rem;
+    border-radius: 0.3rem;
+    background-color: #800000;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    min-width: 12rem;
+    margin: 0.8rem auto 0.8rem auto;
+}
+
+textarea {
+    padding: 0.5rem;
+    resize: none;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    border-width: 2px;
+}
+
+.otsikko {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.tiedot {
+    margin: 0.5rem;
+    border-radius: 0.4rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.tiedot_palkki {
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 0.3rem;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0) 100%);
+}
+
+.tiedot_palkki h1 {
+    margin: 0;
+}
+
+.tiedot_info {
+    padding: 0rem 1.5rem 1rem 1.5rem;
+}
+
+.tiedot_info div {
+    margin: 0.2rem 0.2rem;
+}
+
+section.yllapito {
+    padding: 0.4rem 1rem 1rem 1rem;
+}
+
+.sivu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    text-align: center;
+}
+
+.kontsa {
+    flex: 1;
+    display: flex;
+    flex-direction: column;    
+    min-height: 0;
+    padding: 0rem 2rem;
+    overflow: hidden;
+}
+
+.kontsa h2 {
+    margin: 0.5rem 0rem;
+}
+
+.kontsa_varmistus {
+    padding: 1rem 2rem;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.varmistusnapit {
+    margin: 2rem;
+}
+
+.alanapit {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.alanapit_yllapito {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.infoteksti {
+    margin-top: 1rem;
+}
+
+.miittiruutu {
+    display: flex;
+    flex-direction: column;
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(255, 0, 0, 0.200);
+    border-radius: 0.3rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    width: 50%;
+    margin: 0.2rem auto; 
+}
+
+.miitti_tiedot {
+    padding: 1rem 1.5rem;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0) 25%);
+    border-radius: 0.3rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.ryhma_tiedot {
+    margin: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0) 25%);
+    border-radius: 0.3rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.jasenlista {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.jasenlista div {
+    margin: 0.5rem 0.5rem;
+}
+
+.jasenruutu {
+    padding: 0.25rem 0.5rem;
+    background-color: rgba(255, 0, 0, 0.200);
+    border-radius: 0.3rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 1px;
+    margin: 0.4rem 0.4rem;
+}
+
+.kommentit {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.kommenttikentta {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.05) 60%, rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 0.3rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+    width: 70%;
+    margin: 0.2rem auto;
+}
+
+.kommentti_teksti {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.kommentti_rivi {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    margin: 0.25rem 0rem;
+}
+
+.kommentti_aika {
+    text-align: left;
+    padding-right: 0.4rem;
+}
+
+.kommentti_nimi {
+    text-align: left;
+}
+
+.kommentti {
+    flex: 1;
+    text-align: left;
+
+}
+
+.lista {
+    width: 40%;
+    margin: 0.5rem;
+    border-radius: 0.4rem;
+    border-color: #000;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.miitit {
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.ryhmat {
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.lista_palkki {    
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    border-radius: 0.3rem;
+    background: rgb(255, 0, 0);
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0) 100%);
+}
+
+.lista_palkki h1 {
+    margin: 0;
+}
+
+.lista_info {
+    padding: 0rem 1.5rem 1rem 1.5rem;
+}
+
+.lista_info div {
+    padding: 0.2rem 0rem;
+}
+
+.yllapitovalinta {
+    margin: 0.4rem 0 0.6rem 0;
+}
+
+.yllapitotiedot {
+    margin-top: 1.4rem;
+    border-style:groove;
+    border-width: 2px;
+    border-color: #000;
+    border-radius: 0.3rem;
+}
+
+.ryhmaotsikko {
+    padding: 0.5rem 2rem;
+    background: linear-gradient(to bottom, rgba(255, 0, 0, 0.5) 0%, rgba(255, 0, 0, 0) 100%);
+    color: #000;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.jasenet {
+    font-size: 1rem;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    min-width: 100%;
+    cursor: pointer;
+    table-layout: fixed;
+}
+
+col {
+    width: 33%;
+}
+
+thead {
+    background-color: #000;
+    color: #fff;
+    
+}
+
+th, td {
+    text-align: center;
+    padding: 0.4rem 0 0.4rem 0;
+}
+
+tr:nth-child(even) {
+    background-color: #e4e4e4;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+body {
+    min-width: 100%;
+    max-width: 100%;
+    font-size: 28px;
+}
+
+header {
+    font-size: 1.2rem;
+}
+
+footer {
+    font-size: 1.2rem;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.button_menu {
+    font-size: 24px;
+    padding: 0.5rem 1rem;
+}
+
+.button_ala {
+    font-size: 26px;
+    padding: 1rem 3rem;
+    margin: 1.6rem 1rem 0.8rem 1rem;
+}
+
+input {
+    font-size: 26px;
+    padding: 0.8rem;
+}
+
+input[type=submit], .button {
+    padding: 1rem 3rem;
+    font-size: 26px;
+    min-width: 12rem;
+    margin: 1.6rem auto 1.6rem auto;
+}
+
+textarea {
+    padding: 1rem;
+    font-size: 26px;
+}
+
+.error {
+    font-size: 1rem;
+}
+
+.etusivu_ruutu {
+    max-width: 80%;
+}
+
+.lista {
+    width: 80%;
+}
+
+.kommentti_form {
+    margin-top: 1.2rem;
+}
+
+.kommentti_teksti {
+    width: 90%;
+}
+
+.kommenttikentta {
+    width: 90%;
+}
+
 }
