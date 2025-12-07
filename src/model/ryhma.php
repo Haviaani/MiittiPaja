@@ -1,17 +1,14 @@
 <?php
     require_once HELPERS_DIR . 'DB.php';
 
-    // Tällänen eteen, jos ei tiedä onko käyttöä
     function haeRyhmat() {
         return DB::run('SELECT * FROM mp_miitti ORDER BY aika;')->fetchAll();
     }
 
-    // Tällänen eteen, jos ei tiedä onko käyttöä
     function haeRyhma($idhenkilo) {
         return DB::run('SELECT * FROM mp_henkiloryhma WHERE idhenkilo = ?;',[$idhenkilo])->fetch();
     }
     
-    // Tällänen eteen, jos ei tiedä onko käyttöä
     function haeOmatRyhmaID($idmiitti) {
         return DB::run('SELECT * FROM mp_miitti WHERE idmiitti = ?;',[$idmiitti])->fetch();
     }
