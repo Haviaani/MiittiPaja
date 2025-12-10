@@ -323,7 +323,10 @@ ini_set('display_errors', 1);
                 if ($id) {
                     $miitti = haeMiitti($id);
                     $ypid = haeMiittiYp($id);
-                    if ($miitti) {
+                    $idhenkilo = $loggeduser['idhenkilo'];
+                    $idmiitti = $miitti['idmiitti'];
+                    $jasen = tarkistaJasenyys($idhenkilo,$idmiitti);
+                    if ($miitti && $jasen) {
                         $kommentit = haeKommentit($miitti['idmiitti']);
                         if (isset($_POST['kommentoi'])) {                        
                             $kommenttidata = cleanArrayData($_POST);  

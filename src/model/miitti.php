@@ -52,6 +52,10 @@
     }
 
     function haeKommentit($idmiitti) {
-        return DB::run ('SELECT * FROM mp_kommentti WHERE idmiitti = ?',[$idmiitti])->fetchAll();
+        return DB::run('SELECT * FROM mp_kommentti WHERE idmiitti = ?',[$idmiitti])->fetchAll();
+    }
+
+    function tarkistaJasenyys($idhenkilo,$idmiitti) { 
+        return DB::run('SELECT * FROM mp_henkiloryhma WHERE idhenkilo = ? AND idryhma IN (SELECT idryhma FROM mp_miitti WHERE idmiitti = ?)',[$idhenkilo,$idmiitti])->rowCount();
     }
 ?>

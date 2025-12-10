@@ -51,9 +51,11 @@
                     $ajankohta = new DateTime($miitti['aika']);
                     $ajankohta = $ajankohta->format('d.m.Y \k\l\o H:i');
                 ?>   
-                <div class="lista">                 
-                <a href="miitti?id=<?= $miitti['idmiitti'] ?>">
-                    <div>
+                <div class="lista">
+                    <?php if ($jasen) { ?>             
+                        <a href="miitti?id=<?= $miitti['idmiitti'] ?>">
+                    <?php } ?>
+                        <div>
                         <div class="lista_palkki">
                             <h2><?= $miitti['miitti'] ?></h2>
                         </div>
@@ -61,8 +63,8 @@
                             <div><b>Ajankohta:</b> <?= $ajankohta ?></div>
                             <div><b>Osallistujia:</b> <?= $miitti['osallistujia'] ?></div>
                         </div>
-                    </div>
-                </a>
+                        </div>
+                        </a>
                 </div>
             <?php } ?>
         </div>
