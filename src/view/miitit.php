@@ -27,26 +27,28 @@
                 foreach ($ryhmatiedot as $ryhma) { 
                         $ajankohta = new DateTime($miitti['aika']);
                         $ajankohta = $ajankohta->format('d.m.Y \k\l\o H:i'); 
-                        $ilmoittautuminen = haeIlmoittautuminen($loggeduser['idhenkilo'],$miitti['idmiitti']); ?>
-                    <div class="lista">
-                    <a href="miitti?id=<?= $miitti['idmiitti'] ?>">
-                        <div class="lista_palkki">
-                            <div><h2> <?= $miitti['miitti'] ?></h2></div>
-                        </div>
-                        <div class="lista_info">
-                            <div><b>Ryhmä:</b> <?= $ryhma['ryhmanimi'] ?></div>
-                            <div><b>Ajankohta:</b> <?= $ajankohta ?></div>
-                            <div><b>Ilmoittautuneita:</b> <?=$miitti['osallistujia'] ?></div>
-                            <div><b>Ilmoittautunut:</b> 
-                                <?php if (!$ilmoittautuminen) { 
-                                    echo "Ei";
-                                } else if ($ilmoittautuminen) { 
-                                    echo "Kyllä";
-                                } ?>
+                        $ilmoittautuminen = haeIlmoittautuminen($loggeduser['idhenkilo'],$miitti['idmiitti']); 
+                        if ($miitti['idryhma'] == $ryhma['idryhma']) { ?>                        
+                            <div class="lista">
+                            <a href="miitti?id=<?= $miitti['idmiitti'] ?>">
+                                <div class="lista_palkki">
+                                    <div><h2> <?= $miitti['miitti'] ?></h2></div>
+                                </div>
+                                <div class="lista_info">
+                                    <div><b>Ryhmä:</b> <?= $ryhma['ryhmanimi'] ?></div>
+                                    <div><b>Ajankohta:</b> <?= $ajankohta ?></div>
+                                    <div><b>Ilmoittautuneita:</b> <?=$miitti['osallistujia'] ?></div>
+                                    <div><b>Ilmoittautunut:</b> 
+                                        <?php if (!$ilmoittautuminen) { 
+                                            echo "Ei";
+                                        } else if ($ilmoittautuminen) { 
+                                            echo "Kyllä";
+                                        } ?>
+                                    </div>
+                                </div>                    
+                            </a>
                             </div>
-                        </div>                    
-                    </a>
-                    </div>
+                        <?php } ?>
         <?php } } ?>
     </div>
 </div>
